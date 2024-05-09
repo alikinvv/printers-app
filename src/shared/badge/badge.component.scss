@@ -1,0 +1,18 @@
+.badge-component {
+    display: flex;
+    border-radius: var(--border-radius);
+    padding: 4px 30px;
+
+    &.blue {
+        background: var(--primary);
+    }
+
+    &.green {
+        background: var(--success);
+    }
+
+    &.yellow {
+        background: var(--warning);
+        color: var(--background)
+    }
+}

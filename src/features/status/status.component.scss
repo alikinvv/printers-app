@@ -1,3 +1,18 @@
 .status-component {
-    background-color: var(--gray);
+    background-color: var(--content1);
+    padding: 14px 13px;
+    border-radius: var(--border-radius);
+    min-width: 500px;
+}
+
+.status-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.status-title {
+    font-size: 16px;
+    font-weight: 500;
 }

@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom/client'
-import { App } from './App'
+import { AppComponent } from './app.component'
 import { Provider } from 'react-redux'
 import { store } from './store'
 import 'normalize.css'
@@ -12,7 +12,7 @@ root.render(
     <React.StrictMode>
         <Provider store={store}>
             <BrowserRouter basename="/">
-                <App />
+                <AppComponent />
             </BrowserRouter>
         </Provider>
     </React.StrictMode>,
