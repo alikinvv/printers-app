@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { api } from './api'
-import pages from './pages'
+import { baseApi } from 'services/baseApi'
 
 export const store = configureStore({
     reducer: {
-        [api.reducerPath]: api.reducer,
-        pages,
+        [baseApi.reducerPath]: baseApi.reducer,
     },
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: false,
+        }).concat([baseApi.middleware]),
 })

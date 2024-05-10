@@ -3,3 +3,7 @@ design: https://www.figma.com/design/JzuvnSGD1GywE2A7QbCVGw/NextUI-Figma-Kit-(Co
 -   set one file to multiple printers
 -   update stock after printing
 -   manage filament usage
+-   check how much filament needed to print
+-   page with cameras (add user camera)
+-   status component show camaera (drag)
+-   products page with search

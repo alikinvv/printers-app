@@ -1,0 +1,34 @@
+.button-component {
+    color: #fff;
+    padding: 6px 17px;
+    background: var(--primary);
+    border: 0;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.2s ease-in-out;
+    user-select: none;
+    opacity: 1;
+    display: inline-block;
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+    &.blue {
+        background: var(--primary);
+    }
+
+    &.green {
+        background: var(--success);
+        color: var(--background)
+    }
+
+    &.yellow {
+        background: var(--warning);
+        color: var(--background)
+    }
+
+    &.gray {
+        background: var(--content4);
+    }
+}

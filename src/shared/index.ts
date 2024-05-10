@@ -1,5 +1,5 @@
 export * from './Modal'
-export * from './Button'
+export * from './button/button.component'
 export * from './Input'
 export * from './FormGroup'
 export * from './Checkbox'

@@ -9,10 +9,15 @@
 
     &.green {
         background: var(--success);
+        color: var(--background)
     }
 
     &.yellow {
         background: var(--warning);
         color: var(--background)
+    }
+
+    &.gray {
+        background: var(--content4);
     }
 }

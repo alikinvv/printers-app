@@ -1,57 +1,43 @@
 import { StatusComponent } from 'features'
+import { IPrinterStatus } from './interfaces/status-list.interface'
+import {
+    ender3S1Address,
+    kp3sProNum1Address,
+    kp3sProNum2Address,
+} from 'constants/constants'
 
 import './status-list.component.scss'
-import { IPrinterStatus } from './interfaces/status-list.interface'
-import { WebSocketHook } from 'react-use-websocket/dist/lib/types'
-import { useEffect, useState } from 'react'
-import useWebSocket, { ReadyState } from 'react-use-websocket'
-import { printStatus, wsAddr } from 'constants/constants'
 
-interface IComponentProps {}
-
-export const StatusListComponent = (props: IComponentProps) => {
-    const [ender3S1Pro, setEnder3S1Pro] = useState<IPrinterStatus>({
-        name: 'Ender 3 S1 PRO',
-        status: 'printing',
-    })
-
-    const ender3S1ProSocket: WebSocketHook<unknown, MessageEvent<any> | null> =
-        useWebSocket(wsAddr, {
-            onOpen: () => {
-                console.log('WebSocket connection established.')
-            },
-            share: true,
-            filter: () => false,
-            retryOnError: true,
-            shouldReconnect: () => true,
-            onMessage: (data) => {
-                ender3S1ProSocket.sendJsonMessage(printStatus)
-                const response = JSON.parse(data.data)
-                if ('result' in response) {
-                    if ('status' in response.result) {
-                        console.log(response)
-
-                        setEnder3S1Pro({
-                            ...ender3S1Pro,
-                            status: response.result.status.print_stats.state,
-                        })
-                    }
-                }
-            },
-        })
-
-    // useEffect(() => {
-    //     if (ender3S1ProSocket.readyState === ReadyState.OPEN) {
-    //         ender3S1ProSocket.sendJsonMessage(printStatus)
-    //     }
-    // }, [ender3S1ProSocket.sendJsonMessage, ender3S1ProSocket.readyState])
+export const StatusListComponent = () => {
+    const printers: IPrinterStatus[] = [
+        {
+            name: 'Ender 3 S1 PRO',
+            wsAddr: ender3S1Address,
+            status: 'loading',
+            fileName: 'loading',
+            filamentUsed: 0,
+        },
+        {
+            name: 'KP3S PRO V2 #1',
+            wsAddr: kp3sProNum1Address,
+            status: 'loading',
+            fileName: 'loading',
+            filamentUsed: 0,
+        },
+        {
+            name: 'KP3S PRO V2 #2',
+            wsAddr: kp3sProNum2Address,
+            status: 'loading',
+            fileName: 'loading',
+            filamentUsed: 0,
+        },
+    ]
 
     return (
         <div className="status-list-component">
-            <StatusComponent
-                name={ender3S1Pro.name}
-                status={ender3S1Pro.status}
-            />
+            {printers.map((printer) => (
+                <StatusComponent key={printer.name} {...{ printer }} />
+            ))}
         </div>
     )
 }
