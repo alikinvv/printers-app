@@ -1,34 +1,48 @@
 import { BadgeComponent } from 'shared'
 import './status.component.scss'
 import { IPrinterStatus } from 'widgets'
-import { useSocket } from 'hooks'
+import { useAppDispatch, useSocket } from 'hooks'
 import { useEffect, useState } from 'react'
 import { ReadyState } from 'react-use-websocket'
-import { refreshTimeout, printStatus } from 'constants/constants'
+import { refreshTimeout } from 'constants/constants'
 import { getBadgeVariant } from './utils'
+import { filesList, printStatus } from 'services'
+import { setFileList } from 'store'
 
 interface IComponentInterface {
     printer: IPrinterStatus
 }
 
 export const StatusComponent = (props: IComponentInterface) => {
+    const dispatch = useAppDispatch()
     const [printer, setPrinter] = useState<IPrinterStatus>(props.printer)
 
     const socket = useSocket({
         addr: printer.wsAddr,
         callback: (data) => {
+            console.log(data)
             const response = JSON.parse(data.data)
             if ('result' in response) {
-                if ('status' in response.result) {
-                    const printStats = response.result.status.print_stats
-                    console.log(response.result)
+                const result = response.result
+                console.log(result)
 
+                if ('status' in result) {
+                    const printStats = result.status.print_stats
                     setPrinter({
                         ...printer,
                         status: printStats.state,
                         fileName: printStats.filename,
                         filamentUsed: Math.round(printStats.filament_used),
                     })
+                }
+
+                if (!!result.length && 'path' in result[0]) {
+                    dispatch(
+                        setFileList({
+                            printer: props.printer.name,
+                            files: result,
+                        }),
+                    )
                 }
             }
         },
@@ -40,6 +54,8 @@ export const StatusComponent = (props: IComponentInterface) => {
                 () => socket.sendJsonMessage(printStatus),
                 refreshTimeout,
             )
+
+            socket.sendJsonMessage(filesList)
         }
     }, [socket.sendJsonMessage, socket.readyState])
 

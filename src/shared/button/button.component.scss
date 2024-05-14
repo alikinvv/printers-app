@@ -9,6 +9,10 @@
     user-select: none;
     opacity: 1;
     display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
 
     &:hover {
         opacity: 0.8;
@@ -30,5 +34,14 @@
 
     &.gray {
         background: var(--content4);
+    }
+
+    &.done {
+        background: var(--success);
+        color: var(--background);
+
+        svg {
+            fill: var(--background);
+        }
     }
 }

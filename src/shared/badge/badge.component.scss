@@ -20,4 +20,8 @@
     &.gray {
         background: var(--content4);
     }
+
+    &.ded {
+        background: var(--danger);
+    }
 }

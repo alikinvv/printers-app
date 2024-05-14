@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import colors from 'colors'
 
 export const CheckboxContainerStyled = styled.div<{
     disabled?: boolean
@@ -7,11 +6,6 @@ export const CheckboxContainerStyled = styled.div<{
 }>`
     display: flex;
     align-items: center;
-
-    &:hover::before {
-        background: ${({ checked }) => (checked ? colors.gray : '#fff')};
-        border-color: ${colors.gray};
-    }
 
     svg {
         position: absolute;
@@ -43,11 +37,8 @@ export const InputStyled = styled.input`
     cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
     content: '';
     border-radius: 2px;
-    border: 2px solid
-        ${({ disabled }) => (disabled ? colors.grayLight : colors.gray)};
     transition: all 0.2s ease-in-out;
     appearance: none;
-    background: ${({ checked }) => (checked ? colors.gray : '#fff')};
 `
 
 export const InputWrapperStyled = styled.div`

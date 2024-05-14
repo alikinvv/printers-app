@@ -1,4 +1,3 @@
-import colors from 'colors'
 import styled from 'styled-components'
 
 export const Th = styled.th<{ width?: number }>`
@@ -35,11 +34,4 @@ export const Table = styled.table`
     border-collapse: separate;
     border-spacing: 0;
     width: 100%;
-    border-top: 1px solid ${colors.grayLight};
-    border-left: 1px solid ${colors.grayLight};
-
-    ${Td}, ${Th}, ${Tr} {
-        border-inline-end: 1px solid ${colors.grayLight};
-        border-bottom: 1px solid ${colors.grayLight};
-    }
 `

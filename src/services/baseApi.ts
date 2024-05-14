@@ -9,8 +9,6 @@ export const baseApi = createApi({
             headers.set('Client-Id', CLIENT_ID)
             headers.set('Api-Key', API_KEY)
 
-            console.log(headers)
-
             return headers
         },
     }),

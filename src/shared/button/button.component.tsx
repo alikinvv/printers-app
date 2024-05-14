@@ -1,6 +1,7 @@
 import { ColorEnum } from 'enums'
 import './button.component.scss'
 import classNames from 'classnames'
+import { CheckIcon } from 'assets/icons'
 
 interface IComponentProps {
     children: React.ReactNode
@@ -15,7 +16,7 @@ export const ButtonComponent = (props: IComponentProps) => {
             className={classNames('button-component', variant)}
             {...{ onClick }}
         >
-            {children}
+            {children} {variant === ColorEnum.DONE && <CheckIcon />}
         </div>
     )
 }

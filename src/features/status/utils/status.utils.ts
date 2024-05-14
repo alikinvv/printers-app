@@ -8,6 +8,8 @@ export const getBadgeVariant = (status: string): ColorEnum => {
             return ColorEnum.GREEN
         case 'standby':
             return ColorEnum.YELLOW
+        case 'error':
+            return ColorEnum.YELLOW
         default:
             return ColorEnum.GRAY
     }

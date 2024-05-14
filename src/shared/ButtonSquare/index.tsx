@@ -1,12 +1,6 @@
 import { FC } from 'react'
 import { ButtonStyled } from './styles'
 import { ButtonSquareProps } from './types'
-import { TrashIcon, EditIcon } from '../../assets/icons'
-
-const icons = {
-    trash: <TrashIcon />,
-    edit: <EditIcon />,
-}
 
 export const ButtonSquare: FC<ButtonSquareProps> = ({
     onClick,
@@ -20,7 +14,7 @@ export const ButtonSquare: FC<ButtonSquareProps> = ({
             }}
             style={style}
         >
-            {icon && icons[icon]}
+            {icon}
         </ButtonStyled>
     )
 }

@@ -8,6 +8,15 @@ interface IProductListResult {
     last_id: string
 }
 
+export interface IProduct extends IProductListResultItem {
+    update: IProductUpdate[]
+}
+
+export interface IProductUpdate {
+    path: string
+    count: number
+}
+
 interface IProductListResultItem {
     product_id: number
     offer_id: string

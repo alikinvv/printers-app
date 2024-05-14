@@ -1,4 +1,5 @@
 export interface IPrinterStatus {
+    id: number
     name: string
     wsAddr: string
     status: string

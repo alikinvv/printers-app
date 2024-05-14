@@ -1,11 +1,9 @@
-import colors from 'colors'
 import styled from 'styled-components'
 
 export const InputStyled = styled.input<{ $error?: boolean }>`
     display: block;
     width: 100%;
     border: 1px solid;
-    border-color: ${colors.grayLight};
     font-size: 14px;
     min-height: 32px;
     padding-left: 7px;
@@ -28,7 +26,6 @@ export const InputStyled = styled.input<{ $error?: boolean }>`
     }
 
     &::placeholder {
-        color: ${({ $error }) => ($error ? 'red' : colors.gray)};
         opacity: 1;
     }
 
